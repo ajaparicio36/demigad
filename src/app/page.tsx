@@ -28,13 +28,14 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background items-center justify-center flex flex-col w-full">
+    <div className="min-h-screen bg-background items-center justify-center flex flex-col w-full mt-0">
       {/* Navigation */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 items-center justify-center flex">
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="text-xl font-bold">DemiGAD</span>
+            <Link href="/" className="mr-6 flex flex-row gap-0 items-center">
+              <span className="text-xl font-bold text-yellow-400">demi</span>
+              <span className="text-xl text-blue-400 font-bold">gad</span>
             </Link>
           </div>
           <NavigationMenu className="hidden md:flex ">
@@ -62,29 +63,43 @@ export default function Home() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <div className="flex flex-1 items-center justify-end space-x-4">
-            <Button className="bg-blue-400">Get Started</Button>
-          </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-slate-50 w-full items-center justify-center flex">
-        <div className="container px-4 md:px-6">
+      <section className="-mt-10 py-24 md:py-32 w-full items-center justify-center flex relative overflow-hidden">
+        {/* Background Image with AspectRatio */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <AspectRatio ratio={16 / 9} className="h-full w-full">
+            <Image
+              src="/hero-bg.png"
+              alt="Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Overlay to improve text readability */}
+            <div className="absolute inset-0 bg-slate-900/50"></div>
+          </AspectRatio>
+        </div>
+
+        <div className="container px-4 md:px-6 relative z-10">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="space-y-4">
               <div className="inline-block rounded-lg bg-amber-400 px-3 py-1 text-sm">
                 Innovative Software Solutions
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                 Transforming Ideas Into Digital Reality
               </h1>
-              <p className="max-w-[600px] text-slate-700 md:text-xl">
-                At DemiGAD, we create cutting-edge software solutions tailored
+              <p className="max-w-[600px] text-slate-100 md:text-xl">
+                At DEMIGAD, we create cutting-edge software solutions tailored
                 to meet the evolving needs of businesses and communities.
               </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg">Explore Our Work</Button>
+                <Button size="lg" variant="outline" className="text-white">
+                  Explore Our Work
+                </Button>
                 <Button className="bg-blue-400" size="lg">
                   Contact Us
                 </Button>
@@ -95,12 +110,13 @@ export default function Home() {
                 ratio={16 / 9}
                 className="overflow-hidden rounded-lg"
               >
-                <div className="h-full w-full bg-slate-200 flex object-cover items-center justify-center">
+                <div className="h-full w-full bg-white/20 backdrop-blur-sm flex object-cover items-center justify-center rounded-lg">
                   <Image
-                    src="/logo.png"
+                    src="/logo-transparent.png"
                     alt="DemiGAD"
                     width={1000}
                     height={1000}
+                    className="object-contain p-4"
                   />
                 </div>
               </AspectRatio>
@@ -121,7 +137,7 @@ export default function Home() {
                 About Us
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                We Are DemiGAD
+                We are DEMIGAD
               </h2>
               <p className="max-w-[700px] text-slate-700 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 We specialize in creating innovative software solutions that
@@ -273,7 +289,7 @@ export default function Home() {
               <AspectRatio ratio={16 / 9}>
                 <div className="h-full w-full bg-slate-200 flex object-cover items-center justify-center">
                   <Image
-                    src="/projects/baylocentral.png"
+                    src="/projects/procurio.png"
                     alt="BayloCentral"
                     width={720}
                     height={720}
@@ -302,7 +318,7 @@ export default function Home() {
               <AspectRatio ratio={16 / 9}>
                 <div className="h-full w-full object-cover bg-slate-200 flex items-center justify-center">
                   <Image
-                    src="/projects/baylocentral.png"
+                    src="/projects/medivendo.png"
                     alt="BayloCentral"
                     width={720}
                     height={720}
@@ -355,20 +371,17 @@ export default function Home() {
               </CardFooter>
             </Card>
           </div>
-          <div className="flex justify-center">
-            <Button size="lg">View All Projects</Button>
-          </div>
         </div>
       </section>
 
       {/* Team Section */}
       <section
         id="team"
-        className="py-16 md:py-24 w-full justify-center items-center w-full items-center justify-center flex"
+        className="py-16 md:py-24 w-full items-center justify-center flex"
       >
         <div className="container px-4 md:px-6 items-center w-full justify-center">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
+            <div className="space-y-2 w-full flex flex-col items-center justify-center">
               <div className="inline-block rounded-lg bg-amber-400 px-3 py-1 text-sm">
                 Our Team
               </div>
@@ -381,291 +394,299 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mx-auto max-w-5xl py-12 w-full">
-            <ScrollArea className="w-full whitespace-nowrap w-full">
-              <div className="flex gap-6 pb-4">
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Jeff Andre Millan</CardTitle>
-                    <CardDescription>Founder & CEO</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Tech visionary with 15+ years experience in software
-                      development and leadership.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Matthew Ledesma</CardTitle>
-                    <CardDescription>COO</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Creative designer focused on building intuitive and
-                      accessible user experiences.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Michael Valguna</CardTitle>
-                    <CardDescription>Marketing Manager</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Creative designer focused on building intuitive and
-                      accessible user experiences.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Anthony John Aparicio</CardTitle>
-                    <CardDescription>CTO and Lead Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Creative designer focused on building intuitive and
-                      accessible user experiences.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Mark Renzo Tan</CardTitle>
-                    <CardDescription>CFO</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Experienced project manager ensuring on-time delivery and
-                      client satisfaction.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Zyd Reic Mallorca</CardTitle>
-                    <CardDescription>Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Experienced project manager ensuring on-time delivery and
-                      client satisfaction.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Jezerwel Grino</CardTitle>
-                    <CardDescription>Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Experienced project manager ensuring on-time delivery and
-                      client satisfaction.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Chad Denard Andrada</CardTitle>
-                    <CardDescription>Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Experienced project manager ensuring on-time delivery and
-                      client satisfaction.
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden min-w-[250px]">
-                  <AspectRatio ratio={1 / 1}>
-                    <div className="h-full w-full bg-slate-200 flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-slate-400"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  </AspectRatio>
-                  <CardHeader>
-                    <CardTitle>Lois Kirsten Alonsagay</CardTitle>
-                    <CardDescription>Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-slate-700">
-                      Experienced project manager ensuring on-time delivery and
-                      client satisfaction.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+          <div className="mx-auto py-12 w-full flex ">
+            <div className="w-full relative overflow-hidden">
+              {/* Left fade effect */}
+              <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none"></div>
+
+              <ScrollArea className="w-full overflow-x-auto">
+                <div className="flex gap-6 pb-4 w-max items-center">
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Jeff Andre Millan</CardTitle>
+                      <CardDescription>Founder & CEO</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Tech visionary with 15+ years experience in software
+                        development and leadership.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Matthew Ledesma</CardTitle>
+                      <CardDescription>COO</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Creative designer focused on building intuitive and
+                        accessible user experiences.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Michael Valguna</CardTitle>
+                      <CardDescription>Marketing Manager</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Creative designer focused on building intuitive and
+                        accessible user experiences.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Anthony John Aparicio</CardTitle>
+                      <CardDescription>CTO and Lead Developer</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Creative designer focused on building intuitive and
+                        accessible user experiences.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Mark Renzo Tan</CardTitle>
+                      <CardDescription>CFO</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Experienced project manager ensuring on-time delivery
+                        and client satisfaction.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Zyd Reic Mallorca</CardTitle>
+                      <CardDescription>Developer</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Experienced project manager ensuring on-time delivery
+                        and client satisfaction.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Jezerwel Grino</CardTitle>
+                      <CardDescription>Developer</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Experienced project manager ensuring on-time delivery
+                        and client satisfaction.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Chad Denard Andrada</CardTitle>
+                      <CardDescription>Developer</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Experienced project manager ensuring on-time delivery
+                        and client satisfaction.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden min-w-[250px]">
+                    <AspectRatio ratio={1 / 1}>
+                      <div className="h-full w-full bg-slate-200 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="48"
+                          height="48"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-slate-400"
+                        >
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                    </AspectRatio>
+                    <CardHeader>
+                      <CardTitle>Lois Kirsten Alonsagay</CardTitle>
+                      <CardDescription>Developer</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-slate-700">
+                        Experienced project manager ensuring on-time delivery
+                        and client satisfaction.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
+
+              {/* Right fade effect */}
+              <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none"></div>
+            </div>
           </div>
         </div>
       </section>
